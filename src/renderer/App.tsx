@@ -1,49 +1,38 @@
+import 'tailwindcss/tailwind.css';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
-import './App.css';
-
-function Hello() {
-  return (
-    <div>
-      <div className="Hello">
-        <img width="200" alt="icon" src={icon} />
-      </div>
-      <h1>electron-react-boilerplate</h1>
-      <div className="Hello">
-        <a
-          href="https://electron-react-boilerplate.js.org/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              📚
-            </span>
-            Read our docs
-          </button>
-        </a>
-        <a
-          href="https://github.com/sponsors/electron-react-boilerplate"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="folded hands">
-              🙏
-            </span>
-            Donate
-          </button>
-        </a>
-      </div>
-    </div>
-  );
-}
+import { useEffect } from 'react';
+import { HomePage } from './pages/home';
+import { Wrapper } from './layouts/Wrapper';
+import { ArtefactPage } from './pages/artefact';
+import { useArtefacts } from './store/artefacts';
+import { AutoMappersPage } from './pages/autoMappers';
 
 export default function App() {
+  const { loading, setup } = useArtefacts((state) => ({
+    loading: state.loading,
+    setup: state.setup,
+  }));
+
+  useEffect(() => {
+    setup();
+  }, [setup]);
+
+  if (loading) {
+    return (
+      <div className="w-screen h-screen flex justify-center items-center bg-purple-500 ">
+        <span className="text-white font-extrabold text-sm">CARREGANDO...</span>
+      </div>
+    );
+  }
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Hello />} />
+        <Route path="/" element={<Wrapper />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/artefact" element={<ArtefactPage />} />
+          <Route path="/mappers" element={<AutoMappersPage />} />
+        </Route>
       </Routes>
     </Router>
   );
