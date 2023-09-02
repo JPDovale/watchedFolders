@@ -68,7 +68,7 @@ export class StartupWatchers {
 
     this._artefacts.push(artefact);
 
-    if (!autoMapper) {
+    if (!isMapped) {
       artefact.openVisualSelector();
     }
 
