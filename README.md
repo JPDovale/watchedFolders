@@ -4,4 +4,4 @@ Um projeto para gestão de arquivos em pastas que podem ser selecionadas pelo us
 ---
 
 ### O objetivo do projeto?
-O objetivo do projeto é altomatizar a gestão de arquivos em pastas que frequentemente ficam cheias, auxiliando assim na organização do usuário no seu desktop 
+O objetivo do projeto é automatizar a gestão de arquivos em pastas que frequentemente ficam cheias, auxiliando assim na organização do usuário no seu desktop 
